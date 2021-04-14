@@ -12,7 +12,6 @@ Input Requirement:
 * Arrival time for process 
 * Priority level for process (value 1 to 3) 
 
-
 Format: 
 `no. of process, time quantum, burst time, arrival time, priority`
 
@@ -31,6 +30,7 @@ C program to illustrate Race condition. Requires minimal use of 5 processes and 
 ### Design and Analysis 
 <img width="600" alt="design1" src="https://user-images.githubusercontent.com/26267783/114759304-95434f80-9d90-11eb-9ff5-dac1a6bcf711.png">
 The program will first create a shared semaphore which will be used by all the processes when it begins the process of reading and writing to file. It will create 3 text files for the processes to write to. The program will create 6 processes in total, 5 child processes and 1 parent process.
+
 <img width="420" alt="design2" src="https://user-images.githubusercontent.com/26267783/114759442-bb68ef80-9d90-11eb-92df-18d1e9829ea8.png">
 The diagram above shows the interaction between the different processes and files. The lock icon is used to simulate the presence of the shared binary semaphore which provides mutual exclusion to the 3 files (jar1, jar2, jar3).
 

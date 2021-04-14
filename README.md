@@ -24,6 +24,7 @@ Format:
 * Test Case (2): `./p5_testinput < input_test_2.txt`
 <img width="600" alt="test2" src="https://user-images.githubusercontent.com/26267783/114758032-1a2d6980-9d8f-11eb-84b6-6888750ac201.png">
 
+
 ## Task 2: Race Condition Simulation with Process 
 C program to illustrate Race condition. Requires minimal use of 5 processes and 3 resources. 
 

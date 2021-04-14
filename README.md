@@ -16,8 +16,10 @@ Format:
 `no. of process, time quantum, burst time, arrival time, priority`
 
 ### Replication of Results 
+
 * Test Case (1): `./p5_testinput < input_test_1.txt`
 <img width="800" alt="test1" src="https://user-images.githubusercontent.com/26267783/114757773-d8042800-9d8e-11eb-9d7d-becf32c91079.png">
+
 * Test Case (2): `./p5_testinput < input_test_2.txt`
 <img width="800" alt="test2" src="https://user-images.githubusercontent.com/26267783/114758032-1a2d6980-9d8f-11eb-84b6-6888750ac201.png">
 

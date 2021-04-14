@@ -6,10 +6,9 @@ Documentation for OS module assignment.
 Paper (5): Round Robin, Shortest Job First and Priority algorithm coupled to increase throughput and decrease waiting time and turnaround time. 
 
 ### How to run
-Replicate Paper's 2 example cases. 
-* Example 1: `./pp < input_test_1.txt`
-
-* Example 2: `./pp < input_test_2.txt`
+Replicate Paper's example test cases. 
+* Example 1: `./p5_testinput < input_test_1.txt`
+* Example 2: `./p5_testinput < input_test_2.txt`
 
 ### Algorithm input 
 Input Requirement: 
@@ -21,7 +20,6 @@ Input Requirement:
 
 Format: 
 `no. of process, time quantum, burst time, arrival time, priority`
-
 
 
 ### Task 2: Race Condition Simulation with Process 

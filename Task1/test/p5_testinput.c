@@ -5,9 +5,6 @@
     ========================================================
     Paper (5): Improved RR CPU Scheduling Algorithm
     ========================================================
-    * Name: Thomas Lee Wai Kwong
-    * Student ID: 2000545 
-    ========================================================
     Program notes:  
     ========================================================
     ** main() ** 
@@ -472,7 +469,7 @@ int main()
      Set Time quantum for algorithm based on user
      input. 
     ----------------------------------------------*/
-    printf("Enter a Time Quantum for process:");
+    // printf("Enter a Time Quantum for process:");
     //-- Scan user input for Time quantum
     scanf("%d", &TQ);
 
@@ -481,21 +478,21 @@ int main()
      priority level for each process. 
     ----------------------------------------------------*/ 
     for(int i = 0; i < n; i++){
-        printf("\n------------------------------------\n");
-        printf("*** PRIORITY INPUT: %d ***\n", i+1);
-        printf("------------------------------------");
-        //-- Allow user input for Burst time. 
-        printf("\nEnter Burst Time(BT) for process %d: ", i+1);
+        // printf("\n------------------------------------\n");
+        // printf("*** PRIORITY INPUT: %d ***\n", i+1);
+        // printf("------------------------------------");
+        // //-- Allow user input for Burst time. 
+        // printf("\nEnter Burst Time(BT) for process %d: ", i+1);
         //-- Scan user input for burst time
         scanf("%d", &BT[i]);
 
         //-- Allow user input for Arrival time. 
-        printf("\nEnter Arrival Time(BT) for process %d: ", i+1);
+        // printf("\nEnter Arrival Time(BT) for process %d: ", i+1);
         //-- Scan user input for arrival time. 
         scanf("%d", &AT[i]);
 
         //-- Allow user input for Priority level.
-        printf("\nEnter Priority Value: (1-3) for process %d: ", i+1);
+        // printf("\nEnter Priority Value: (1-3) for process %d: ", i+1);
         //-- Scan user input for priority level.
         scanf("%d", &P_val[i]);
         //-- Validate Priority value input. 

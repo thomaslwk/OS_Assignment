@@ -5,9 +5,6 @@
     ========================================================
     Paper (5): Improved RR CPU Scheduling Algorithm
     ========================================================
-    * Name: Thomas Lee Wai Kwong
-    * Student ID: 2000545 
-    ========================================================
     Program notes:  
     ========================================================
     ** main() ** 
@@ -35,6 +32,7 @@
                process remaining in ready queue.
     * temp_WT = (Int) Var. to keep track of total 
                time spent executing process. 
+    * ctx_s = (Int) Var. to track no. of context switches.
     * exit_t = (Int) Var. to cal. turnaround time 
                 formula. 
     * rem_BT[] = (Int) Array to track remaining burst time
@@ -66,7 +64,7 @@
 /*-----------------------------------------------
  Getter methods to return new Time Quantum value 
  base on priority value. 
------------------------------------------------------------*/
+-------------------------------------------------*/
 int GetLowPriority(int n, int TQ) {
     //-- Create variable for low priority. 
     int low_p = 0; 
@@ -109,7 +107,7 @@ int DisplayTimeQuantum(int n, int TQ) {
 int RunSimulation(int n, int TQ, int BT[], int AT[], int WT[], 
     int TAT[], int P_val[], bool P_flag[]) {
     //-- Create temp variables for calculation. 
-    int RQ_ctr = 0, temp_WT = 0, exit_t = 0, rem_RQ = 0, rem_BT[n], new_TQ[n];
+    int RQ_ctr = 0, temp_WT = 0, exit_t = 0, ctx_s = 0, rem_RQ = 0, rem_BT[n], new_TQ[n];
     memset(rem_BT, 0, n*sizeof(int));
     memset(new_TQ, 0, n*sizeof(int));
     //-- Push all process into ready queue. 
@@ -134,12 +132,14 @@ int RunSimulation(int n, int TQ, int BT[], int AT[], int WT[],
             new_TQ[i] = GetHighPriority(n, TQ);
         }
     }
+    
     //-- Main loop to execute Paper's Improved simulation.
-    // printf("\n------------------------------------\n");
-    // printf("***** Paper (5) RR Simulation *****\n");
-    // printf("------------------------------------\n");
-    // printf("***** Gantt Chart *****\n");
-    // printf("------------------------------------\n");
+    printf("\n------------------------------------\n");
+    printf("***** Paper (5) RR Simulation *****\n");
+    printf("------------------------------------\n");
+    printf("***** Gantt Chart *****\n");
+    printf("------------------------------------\n");
+    
     while(1){
         //-- Set default process status to true. No process running. 
         bool process_status = true;
@@ -170,7 +170,9 @@ int RunSimulation(int n, int TQ, int BT[], int AT[], int WT[],
                 temp_WT += rem_BT[i];
 
                 //-- Print for Gantt Chart
-                // printf("%d (%d)| ", i+1, temp_WT);
+                printf("%d (%d)| ", i+1, temp_WT);
+                //-- Add count to context switch ctr.
+                ctx_s++;
 
                 /*-------------------------------
                  When task is complete: 
@@ -183,7 +185,6 @@ int RunSimulation(int n, int TQ, int BT[], int AT[], int WT[],
                 rem_BT[i] = 0; 
                 //-- When task is complete, set exit time to 0.
                 exit_t = 0;
-                //-- When task is complete, remove from ready queue. 
                 RQ_ctr--;
                 //-- Set process status to false. Pending task.
                 process_status = false;    
@@ -222,7 +223,9 @@ int RunSimulation(int n, int TQ, int BT[], int AT[], int WT[],
                     temp_WT += rem_BT[i];
 
                     //-- Print for Gantt Chart
-                    // printf("%d (%d)| ", i+1, temp_WT);
+                    printf("%d (%d)| ", i+1, temp_WT);
+                    //-- Add count to context switch ctr.
+                    ctx_s++;
 
                     /*-------------------------------
                      When task is complete: 
@@ -268,7 +271,9 @@ int RunSimulation(int n, int TQ, int BT[], int AT[], int WT[],
                     temp_WT += rem_BT[i];
 
                     //-- Print for Gantt Chart
-                    // printf("%d (%d)| ", i+1, temp_WT);
+                    printf("%d (%d)| ", i+1, temp_WT);
+                    //-- Add count to context switch ctr.
+                    ctx_s++;
 
                     /*-------------------------------
                      When task is complete: 
@@ -314,7 +319,9 @@ int RunSimulation(int n, int TQ, int BT[], int AT[], int WT[],
                     temp_WT = temp_WT + rem_BT[i];
 
                     //-- Print for Gantt Chart
-                    // printf("%d (%d)| ", i+1, temp_WT);
+                    printf("%d (%d)| ", i+1, temp_WT);
+                    //-- Add count to context switch ctr.
+                    ctx_s++;
 
                     /*-------------------------------
                      When task is complete: 
@@ -349,7 +356,9 @@ int RunSimulation(int n, int TQ, int BT[], int AT[], int WT[],
                         //temp time = temp time + time used by process.  
                         temp_WT += new_TQ[i];
                         //-- Print for Gantt Chart
-                        // printf("%d (%d)| ", i+1, temp_WT);
+                        printf("%d (%d)| ", i+1, temp_WT);
+                        //-- Add count to context switch ctr.
+                        ctx_s++;
                     }
                     //-- If Priority is medium. 
                     else if(P_val[i] == 2){
@@ -361,7 +370,9 @@ int RunSimulation(int n, int TQ, int BT[], int AT[], int WT[],
                         //temp time = temp time + time used by process.  
                         temp_WT += new_TQ[i];     
                         //-- Print for Gantt Chart
-                        // printf("%d (%d)| ", i+1, temp_WT);
+                        printf("%d (%d)| ", i+1, temp_WT);
+                        //-- Add count to context switch ctr.
+                        ctx_s++;
                     }
                     //-- If Priority is high. 
                     else if(P_val[i] == 3){
@@ -373,7 +384,9 @@ int RunSimulation(int n, int TQ, int BT[], int AT[], int WT[],
                         //temp time = temp time + time used by process.  
                         temp_WT += new_TQ[i];
                         //-- Print for Gantt Chart
-                        // printf("%d (%d)| ", i+1, temp_WT);
+                        printf("%d (%d)| ", i+1, temp_WT);
+                        //-- Add count to context switch ctr.
+                        ctx_s++;
                     }
                 }
             }
@@ -391,25 +404,26 @@ int RunSimulation(int n, int TQ, int BT[], int AT[], int WT[],
      Function to calculate Average Wait time and 
      Average Turnaround time. Print output. 
     --------------------------------------------*/
-    // printf("\n------------------------------------\n");
-    // printf("***** Process Table *****\n");
-    // printf("------------------------------------\n");
+    printf("\n------------------------------------\n");
+    printf("***** Process Table *****\n");
+    printf("------------------------------------\n");
     //-- Print table header.
-    // printf("Process \tBurst Time \tWaiting Time \tTurn Around Time"); 
+    printf("Process \tBurst Time \tArrival Time \tWaiting Time \tTurn Around Time"); 
     for(int i = 0; i < n; i++){
         //-- Calculate Total Avg_WT and Avg_TT 
         Avg_WT += WT[i];
         Avg_TT += TAT[i];
         //-- Print output. 
-        // printf("\n\t%d\t%d\t\t%d\t\t%d",i+1, BT[i], WT[i], TAT[i]); 
+        printf("\n\t%d\t%d\t\t%d\t\t%d\t\t%d",i+1, BT[i], AT[i], WT[i], TAT[i]); 
     }
     //-- Print Average Wait time and Average Turn around time. 
-    // printf("\n------------------------------------\n");
-    printf("\n%0.2f, %0.2f", Avg_WT/n, Avg_TT/n);
-    // printf("\nAverage Waiting Time: %0.2f", Avg_WT/n);
-    // printf("\nAverage Turnaround Time: %0.2f", Avg_TT/n);
+    printf("\n------------------------------------\n");
+    printf("\nAverage Waiting Time: %0.1f", Avg_WT/n);
+    printf("\nAverage Turnaround Time: %0.1f", Avg_TT/n);
+    printf("\nTotal no. of context switches: %d\n", ctx_s);
     return 1;
 }
+
 
 /*------------
  Main Function 
@@ -426,10 +440,10 @@ int main()
      1. Input no. of Process and define essential 
      variables. 
      --------------------------------------------*/
-    // printf("------------------------------------\n");
-    // printf("***** Start of Program *****\n");
-    // printf("------------------------------------\n");
-    // printf("Enter the no. of processes: ");
+    printf("------------------------------------\n");
+    printf("***** Start of Program *****\n");
+    printf("------------------------------------\n");
+    printf("Enter the no. of processes: ");
     //-- Scan usr input for no. of process input.
     scanf("%d", &n);  
 
@@ -455,7 +469,7 @@ int main()
      Set Time quantum for algorithm based on user
      input. 
     ----------------------------------------------*/
-    // printf("Enter a Time Quantum for process:");
+    printf("Enter a Time Quantum for process:");
     //-- Scan user input for Time quantum
     scanf("%d", &TQ);
 
@@ -464,44 +478,60 @@ int main()
      priority level for each process. 
     ----------------------------------------------------*/ 
     for(int i = 0; i < n; i++){
-        // printf("\n------------------------------------\n");
-        // printf("*** PRIORITY INPUT: %d ***\n", i+1);
-        // printf("------------------------------------");
+        printf("\n------------------------------------\n");
+        printf("*** PRIORITY INPUT: %d ***\n", i+1);
+        printf("------------------------------------");
         //-- Allow user input for Burst time. 
-        // printf("\nEnter Burst Time(BT) for process %d: ", i+1);
+        printf("\nEnter Burst Time(BT) for process %d: ", i+1);
         //-- Scan user input for burst time
         scanf("%d", &BT[i]);
 
-    }
-    for(int i = 0; i < n; i++){
         //-- Allow user input for Arrival time. 
-        // printf("\nEnter Arrival Time(BT) for process %d: ", i+1);
+        printf("\nEnter Arrival Time(BT) for process %d: ", i+1);
         //-- Scan user input for arrival time. 
         scanf("%d", &AT[i]);
-    }
-    for(int i = 0; i < n; i++){
+
         //-- Allow user input for Priority level.
-        // printf("\nEnter Priority Value: (1-3) for process %d: ", i+1);
+        printf("\nEnter Priority Value: (1-3) for process %d: ", i+1);
         //-- Scan user input for priority level.
         scanf("%d", &P_val[i]);
         //-- Validate Priority value input. 
-        // if(P_val[i] < 1 || P_val[i] > 3) {
-        //     printf("\n------------------------------------\n");
-        //     printf("Enter a value from (1-3).");
-        //     return 0;
-        // }
+        if(P_val[i] < 1 || P_val[i] > 3) {
+            printf("\n------------------------------------\n");
+            printf("Enter a value from (1-3).");
+            return 0;
+        }
     }
-    // printf("\n------------------------------------\n");
+    printf("\n------------------------------------\n");
+    //-- Sort by arrival time. 
+    // for(int i = 0; i < n; i++) {
+    //     int pos = i, tempx;
+    //     for(int j = i; j < n; j++){
+    //         if(AT[j] < AT[pos]){
+    //             pos = j; 
+    //         }
+    //     }
+    //     PID[i] = i;
+    //     tempx = AT[i];
+    //     AT[i] = AT[pos];
+    //     AT[pos] = tempx;
+
+    //     tempx = BT[i];
+    //     BT[i] = BT[pos];
+    //     BT[pos] = tempx;
+        
+    //     tempx = P_val[i];
+    //     P_val[i] = P_val[pos];  
+    //     P_val[pos] = tempx;
+    // }
 
     /*-------------------------------------------
      Function to display new time quantum values. 
     --------------------------------------------*/
-    // DisplayTimeQuantum(n, TQ);
-
+    DisplayTimeQuantum(n, TQ);
     /*----------------------------------------
      Function to start Round robin simulation. 
     -----------------------------------------*/
     RunSimulation(n, TQ, BT, AT, WT, TAT, P_val, P_flag);
-
     return 0;
 }

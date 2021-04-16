@@ -1,4 +1,4 @@
-# Operating Systems Assignment
+# ICT1007: Operating Systems Assignment
 Documentation for OS module assignment. 
 
 ## Task 1: Improved Round Robin CPU Scheduling Algorithm 
